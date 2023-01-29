@@ -1,4 +1,4 @@
-import { NestFactory } from '@nestjs/core';
+import { NestApplication, NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 //import express module
 import * as express from 'express';
@@ -6,7 +6,7 @@ import * as express from 'express';
 import * as path from 'path';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestApplication>(AppModule);
   // A public folder to serve static files
   app.use(express.static(path.join(__dirname, 'public')));
   app.set('views', __dirname + '/views');
